@@ -1,6 +1,11 @@
-$--Light-green:#7ed56f;
+$--Light-green: #7ed56f;
 $--Medium-green: #55c57a;
 $--Dark-green: #28b485;
+@mixin btn {
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-block;
+}
 * {
   margin: 0;
   padding: 0;
@@ -18,18 +23,23 @@ body {
 
 .header {
   height: 95vh;
-  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../../img/hero.jpg);
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(126, 213, 111, 0.8),
+      rgba(40, 180, 133, 0.8)
+    ),
+    url(../../img/hero.jpg);
   background-size: cover;
   background-position: top;
   position: relative;
-  clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%)
+  clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
 }
 
 .logo-box {
   position: absolute;
   top: 40px;
   left: 40px;
-  >.logo {
+  > .logo {
     height: 35px;
   }
 }
@@ -40,12 +50,33 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   backface-visibility: hidden;
+  text-align: center;
+  .btn:link,
+  &:visited {
+    @include btn();
+    padding: 15px 40px;
+    border-radius: 100px;
+    transition: all 0.2s;
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    &:active {
+      transform: translateY(-1px);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    }
+  }
+  .btn-white {
+    background-color: #fff;
+    color: #777;
+  }
 }
 
 .heading-primary {
   color: #ffffff;
   text-transform: uppercase;
-  >.heading-primary-main {
+  margin-bottom: 60px;
+  > .heading-primary-main {
     display: block;
     font-size: 60px;
     font-weight: 400;
@@ -56,7 +87,7 @@ body {
     animation-timing-function: linear; // animation-iteration-count: 2;
     // animation-delay: 2s;
   }
-  >.heading-primary-sub {
+  > .heading-primary-sub {
     display: block;
     font-size: 20px;
     font-weight: 700;
@@ -67,13 +98,14 @@ body {
   }
 }
 
+// keyframes
 @keyframes moveInLeft {
   0% {
     opacity: 0;
     transform: translateX(-100px);
   }
   80% {
-    transform: translateX(10px)
+    transform: translateX(10px);
   }
   100% {
     opacity: 1;
@@ -87,7 +119,7 @@ body {
     transform: translateX(100px);
   }
   80% {
-    transform: translateX(-10px)
+    transform: translateX(-10px);
   }
   100% {
     opacity: 1;
